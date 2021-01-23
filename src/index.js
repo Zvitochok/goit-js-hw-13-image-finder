@@ -17,13 +17,16 @@ refs.searchForm.addEventListener ("submit", e =>{
     apiService.resetPage();
     apiService.fetchImages().then(card =>{
         updateImagesMarkup(card);
-        refs.loadMore.classList.remove('is-hidden')
+        
     });
 });
 
 function updateImagesMarkup(card) {
     const markup = cardTpl(card);
     refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
+    if(markup){
+        refs.loadMore.classList.remove('is-hidden')
+    }
 }
 
 refs.loadMore.addEventListener('click', () =>{
@@ -31,7 +34,7 @@ refs.loadMore.addEventListener('click', () =>{
         updateImagesMarkup(card);
         refs.loadMore.classList.remove('is-hidden')
         window.scrollBy({
-            top: 900,
+            top: 1400,
             left: 0,
             behavior: 'smooth',
           });
